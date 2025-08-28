@@ -1,31 +1,37 @@
-
 <!DOCTYPE html>
 <html>
 <head>
   <title>Input Score MKR Pingpong League</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="/Season2/favicon.ico" type="image/x-icon">
-
   <base target="_top"> 
-
   <style>
-    body, html {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      overflow: hidden; /* Mencegah scroll ganda */
-    }
-    iframe {
-      border: none; /* Hilangkan border iframe */
-      width: 100%;
-      height: 100%;
-    }
+    body, html { margin: 0; padding: 0; height: 100%; overflow: hidden; }
+    iframe { border: none; width: 100%; height: 100%; }
   </style>
 </head>
 <body>
-  <iframe 
-src="https://script.google.com/a/~/macros/s/AKfycbyeK1UvoOqT93D1DbrXUPgGnfmhyYDwLluYaAlfH-pDYu6i2lINtVv8813OymsiMNnD/exec"
-allow="camera; microphone; geolocation; fullscreen; clipboard-read; clipboard-write">
-</iframe>
+  
+  <iframe id="gas-app"
+    src="https://script.google.com/a/~/macros/s/AKfycbyeK1UvoOqT93D1DbrXUPgGnfmhyYDwLluYaAlfH-pDYu6i2lINtVv8813OymsiMNnD/exec"
+    allow="camera; microphone; geolocation; fullscreen; clipboard-read; clipboard-write">
+  </iframe>
+
+  <script>
+    window.addEventListener("message", (event) => {
+      // Keamanan: Pastikan sinyal datang dari Google Apps Script
+      if (event.origin !== "https://script.google.com") {
+        return;
+      }
+
+      // Jika sinyal yang diterima adalah "navigateHome"
+      if (event.data === "navigateHome") {
+        const iframe = document.getElementById("gas-app");
+        // Reload iframe kembali ke kondisi awal
+        iframe.src = iframe.src;
+      }
+    });
+  </script>
+
 </body>
 </html>
